@@ -1,0 +1,95 @@
+libgpiod v0.3
+=============
+
+New features:
+- gpiomon can now watch multiple lines at the same time and supports custom
+  output formats which can be specified using the --format argument
+- testing framework can now test external programs: test cases for gpio-tools
+  have been added
+
+Improvements:
+- improve error messages
+- improve README examples
+- configure script improvements
+
+Bug fixes:
+- use correct UAPI flags when requesting line events
+
+libgpiod v0.2.1
+===============
+
+Bug fixes:
+- capitalize 'GPIO' in error messages in gpioset, gpioget & gpiomon
+- tweak the error message on invalid arguments in gpiofind
+- don't ignore superfluous arguments and fix the displayed name for falling
+  edge events in gpiomon
+
+libgpiod v0.2
+=============
+
+New features:
+- relicensed under LGPLv2.1
+- implemented a unit testing framework together with a comprehensive
+  set of test cases
+- added a non-closing variant of the gpiochip iterator and foreach
+  macro [by Clemens Gruber]
+- added gpiod_chip_open_by_label()
+
+Improvements:
+- Makefiles & build commands have been reworked [by Thierry Reding]
+- documentation updates
+- code shrinkage here and there
+- coding style fixes
+- removed all designated initializers from the header for better standards
+  compliance
+
+Bug fixes:
+- fix the return value of gpiod_simple_event_loop()
+- don't try to process docs if doxygen is not installed
+
+libgpiod v0.1.3
+===============
+
+Bug fixes:
+- this time the bug making it impossible to request both types of line events
+  was really fixed
+- pass the O_CLOEXEC flag to open() when opening the GPIO chip device file
+
+libgpiod v0.1.2
+===============
+
+Bug fixes:
+- include <poll.h> instead of <sys/poll.h> in gpioset
+- fix a formatting issue in gpioinfo for chips with >100 GPIO lines
+- fix a bug when requesting both-edges event notifications
+
+libgpiod v0.1.1
+===============
+
+Bug fixes:
+- fix short options in gpiomon (short opt for --silent was missing)
+- correct the kernel headers requirements in README
+- include <time.h> for struct timespec
+- include <poll.h> instead of <sys/poll.h>
+- detect the version of strerror_r()
+
+libgpiod v0.1
+=============
+
+First version of libgpiod.
+
+It's currently possible to:
+- get and set the values of multiple GPIO lines with a single function call
+- monitor a GPIO line for events
+- enumerate all GPIO chips present in the system
+- enumerate all GPIO lines exposed by a chip
+- extract information about GPIO chips (label, name, number of lines)
+- extract information about GPIO lines (name, flags, state, user)
+
+Tools provided with the library are:
+- gpioget - read values from GPIO lines
+- gpioset - set values of GPIO lines
+- gpiodetect - list GPIO chips
+- gpioinfo - print info about GPIO lines exposed by a chip
+- gpiomon - monitor a GPIO line for events
+- gpiofind - find a GPIO line by name
